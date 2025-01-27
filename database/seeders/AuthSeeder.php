@@ -46,19 +46,22 @@ class AuthSeeder extends Seeder
             'is_active' => true
         ]);
 
-        Permission::create(['name' => 'read:permissions']);
-        Permission::create(['name' => 'write:permissions']);
-        Permission::create(['name' => 'delete:permissions']);
+        Permission::create(['name' => 'read:permissions', 'display_name' => 'Read Permissions']);
+        Permission::create(['name' => 'write:permissions', 'display_name' => 'Write Permissions']);
+        Permission::create(['name' => 'delete:permissions', 'display_name' => 'Delete Permissions']);
 
-        Permission::create(['name' => 'read:roles']);
-        Permission::create(['name' => 'write:roles']);
-        Permission::create(['name' => 'delete:roles']);
+        Permission::create(['name' => 'read:roles', 'display_name' => 'Read Roles']);
+        Permission::create(['name' => 'write:roles', 'display_name' => 'Write Roles']);
+        Permission::create(['name' => 'delete:roles', 'display_name' => 'Delete Roles']);
 
-        Permission::create(['name' => 'read:users']);
-        Permission::create(['name' => 'write:users']);
-        Permission::create(['name' => 'delete:users']);
+        Permission::create(['name' => 'read:users', 'display_name' => 'Read Users']);
+        Permission::create(['name' => 'write:users', 'display_name' => 'Write Users']);
+        Permission::create(['name' => 'delete:users', 'display_name' => 'Delete Users']);
 
-        Role::create(['name' => 'admin'])->assignPermissions([
+        Role::create([
+            'name' => 'admin',
+            'display_name' => 'Admin',
+        ])->assignPermissions([
             'read:permissions',
             'write:permissions',
             'delete:permissions',
