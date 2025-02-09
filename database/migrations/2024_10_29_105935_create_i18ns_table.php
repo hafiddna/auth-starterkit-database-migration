@@ -14,7 +14,27 @@ return new class extends Migration
     {
         Schema::create('i18ns', function (Blueprint $table) {
             $table->uuid('id')->primary()->default(DB::raw('gen_random_uuid()'));
+            $table->jsonb('metadata')->default(json_encode([
+                'created_at' => null,
+                'created_by' => null,
+                'updated_at' => null,
+                'updated_by' => null,
+                'deleted_at' => null,
+                'deleted_by' => null
+            ]));
         });
+
+        DB::statement("
+        CREATE TRIGGER set_created_at_jsonb_timestamps
+        BEFORE INSERT ON i18ns
+        FOR EACH ROW EXECUTE FUNCTION update_created_at_jsonb_timestamps();
+        ");
+
+        DB::statement("
+        CREATE TRIGGER set_updated_at_jsonb_timestamps
+        BEFORE UPDATE ON i18ns
+        FOR EACH ROW EXECUTE FUNCTION update_updated_at_jsonb_timestamps();
+        ");
     }
 
     /**
@@ -23,5 +43,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('i18ns');
+        DB::statement('DROP TRIGGER IF EXISTS set_created_at_jsonb_timestamps ON i18ns;');
+        DB::statement('DROP TRIGGER IF EXISTS set_updated_at_jsonb_timestamps ON i18ns;');
     }
 };

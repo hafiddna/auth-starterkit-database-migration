@@ -12,6 +12,14 @@ class I18n extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'metadata',
+    ];
+
+    protected $casts = [
+        'metadata' => 'array',
+    ];
+
     public function translations(): HasMany
     {
         return $this->hasMany(Translation::class);

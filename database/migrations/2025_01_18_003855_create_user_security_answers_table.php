@@ -48,5 +48,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('user_security_answers');
+        DB::statement('DROP TRIGGER IF EXISTS set_created_at_jsonb_timestamps ON user_security_answers;');
+        DB::statement('DROP TRIGGER IF EXISTS set_updated_at_jsonb_timestamps ON user_security_answers;');
     }
 };
