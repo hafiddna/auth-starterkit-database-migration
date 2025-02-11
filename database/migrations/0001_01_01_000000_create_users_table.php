@@ -26,7 +26,6 @@ return new class extends Migration
             $table->text('two_factor_recovery_codes')->nullable();
             $table->unsignedBigInteger('two_factor_confirmed_at')->nullable();
             $table->boolean('is_active')->default(false);
-            $table->rememberToken();
             $table->jsonb('metadata')->default(json_encode([
                 'created_at' => null,
                 'created_by' => null,
@@ -107,6 +106,7 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->unsignedBigInteger('last_activity')->index();
+            $table->rememberToken();
             $table->jsonb('metadata')->default(json_encode([
                 'created_at' => null,
                 'created_by' => null,
