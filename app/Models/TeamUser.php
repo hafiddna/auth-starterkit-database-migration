@@ -19,6 +19,7 @@ class TeamUser extends Pivot
     protected $fillable = [
         'team_id',
         'user_id',
+        'is_active',
     ];
 
     public function team(): BelongsTo
