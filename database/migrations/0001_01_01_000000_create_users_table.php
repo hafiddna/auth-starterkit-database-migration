@@ -106,6 +106,7 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->unsignedBigInteger('last_activity')->index();
+            $table->string('app_id')->unique();
             $table->rememberToken();
             $table->jsonb('metadata')->default(json_encode([
                 'created_at' => null,
