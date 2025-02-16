@@ -59,13 +59,13 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-            'pin' => 'hashed',
-        ];
-    }
+//    protected function casts(): array
+//    {
+//        return [
+//            'password' => 'hashed',
+//            'pin' => 'hashed',
+//        ];
+//    }
 
     public function teams(): BelongsToMany
     {

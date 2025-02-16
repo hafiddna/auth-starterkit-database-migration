@@ -29,6 +29,8 @@ class UserFactory extends Factory
             'phone' => fake()->unique()->phoneNumber(),
             'phone_verified_at' => round(microtime(true) * 1000),
             'username' => fake()->unique()->userName(),
+//            'password' => static::$password ??= password_hash('password', PASSWORD_ARGON2ID),
+//            'pin' => static::$pin ??= password_hash('123456', PASSWORD_ARGON2ID),
             'password' => static::$password ??= Hash::make('password'),
             'pin' => static::$pin ??= Hash::make('123456'),
         ];
