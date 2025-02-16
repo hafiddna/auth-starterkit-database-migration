@@ -40,7 +40,7 @@ class AuthSeeder extends Seeder
             'nick_name' => 'Team Admin'
         ]);
 
-        Team::create([
+        $team = Team::create([
             'owner_id' => $teamAdmin->id,
             'name' => "Team Admin's Team",
             'is_active' => true
@@ -73,7 +73,19 @@ class AuthSeeder extends Seeder
             'delete:users'
         ]);
 
+        Role::create([
+            'team_id' => $team->id,
+            'name' => 'team_admin',
+            'display_name' => 'Team Admin',
+        ])->assignPermissions([
+            'read:permissions',
+            'read:roles',
+            'read:users',
+            'write:users',
+            'delete:users'
+        ]);
+
         $admin->assignRole('admin');
-        $teamAdmin->assignRole('admin');
+        $teamAdmin->assignRole('team_admin');
     }
 }

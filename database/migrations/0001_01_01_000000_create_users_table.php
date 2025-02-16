@@ -107,6 +107,8 @@ return new class extends Migration
             $table->longText('payload');
             $table->unsignedBigInteger('last_activity')->index();
             $table->string('app_id')->unique();
+            $table->enum('device_category', ['Web', 'Mobile', 'Desktop App', 'Smart Devices', 'Game Consoles', 'Bots and Automation', 'Virtual or Cloud', 'Others']);
+            $table->string('device_type');
             $table->rememberToken();
             $table->jsonb('metadata')->default(json_encode([
                 'created_at' => null,

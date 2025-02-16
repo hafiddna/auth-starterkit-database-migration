@@ -13,6 +13,7 @@ class Role extends Model
     use HasUuids;
 
     protected $fillable = [
+        'team_id',
         'name',
         'display_name',
         'description',
