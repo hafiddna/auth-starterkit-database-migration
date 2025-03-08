@@ -46,6 +46,8 @@ class AuthSeeder extends Seeder
             'is_active' => true
         ]);
 
+        Permission::create(['name' => 'read:dashboard', 'display_name' => 'Read Dashboard']);
+
         Permission::create(['name' => 'read:permissions', 'display_name' => 'Read Permissions']);
         Permission::create(['name' => 'write:permissions', 'display_name' => 'Write Permissions']);
         Permission::create(['name' => 'delete:permissions', 'display_name' => 'Delete Permissions']);
@@ -62,6 +64,7 @@ class AuthSeeder extends Seeder
             'name' => 'admin',
             'display_name' => 'Admin',
         ])->assignPermissions([
+            'read:dashboard',
             'read:permissions',
             'write:permissions',
             'delete:permissions',
@@ -78,11 +81,10 @@ class AuthSeeder extends Seeder
             'name' => 'team_admin',
             'display_name' => 'Team Admin',
         ])->assignPermissions([
+            'read:dashboard',
             'read:permissions',
             'read:roles',
             'read:users',
-            'write:users',
-            'delete:users'
         ]);
 
         $admin->assignRole('admin');
